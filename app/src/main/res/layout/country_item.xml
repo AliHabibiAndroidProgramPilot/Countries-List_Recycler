@@ -49,12 +49,15 @@
 
     <TextView
         android:id="@+id/txtCountryName"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="16dp"
+        android:ellipsize="end"
+        android:maxLines="2"
         android:textColor="@color/black"
         android:textSize="24sp"
+        app:layout_constraintEnd_toStartOf="@+id/btn_delete"
         app:layout_constraintStart_toEndOf="@+id/imgCountry"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="USA" />
