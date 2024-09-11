@@ -31,6 +31,6 @@ class MainActivity : AppCompatActivity() {
             )
         binding.RecyclerView.layoutManager =
             LinearLayoutManager(this, RecyclerView.VERTICAL, false)
-        binding.RecyclerView.adapter = CountriesListAdapter(countries)
+        binding.RecyclerView.adapter = CountriesListAdapter(this, countries)
     }
 }
