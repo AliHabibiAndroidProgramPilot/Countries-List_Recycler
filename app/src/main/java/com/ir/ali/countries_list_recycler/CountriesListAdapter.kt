@@ -2,7 +2,6 @@ package com.ir.ali.countries_list_recycler
 
 import android.app.Activity
 import android.content.Intent
-import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.ir.ali.countries_list_recycler.databinding.CountryItemBinding
@@ -12,7 +11,7 @@ class CountriesListAdapter(
     private val countries: ArrayList<CountriesData>
 ) : RecyclerView.Adapter<CountriesListAdapter.ViewHolder>() {
     inner class ViewHolder(
-        private val countryItemBinding: CountryItemBinding
+        val countryItemBinding: CountryItemBinding
     ) : RecyclerView.ViewHolder(countryItemBinding.root) {
         init {
             countryItemBinding.root.setOnClickListener {
@@ -38,6 +37,11 @@ class CountriesListAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.setData(countries[position])
+        holder.countryItemBinding.btnDelete.setOnClickListener {
+            val layoutPosition = holder.layoutPosition
+            countries.removeAt(layoutPosition)
+            notifyItemRemoved(layoutPosition)
+        }
     }
 
     override fun getItemCount(): Int = countries.size

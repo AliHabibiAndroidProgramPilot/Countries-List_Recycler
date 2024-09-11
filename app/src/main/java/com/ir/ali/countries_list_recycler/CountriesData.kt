@@ -6,4 +6,6 @@ data class CountriesData(
     var countryContinent: String,
     var countryCode: String,
     var countryFlag: Int
-)
+) {
+
+}
