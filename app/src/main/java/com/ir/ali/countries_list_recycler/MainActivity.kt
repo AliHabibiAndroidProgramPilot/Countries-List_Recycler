@@ -2,16 +2,22 @@ package com.ir.ali.countries_list_recycler
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ir.ali.countries_list_recycler.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
+    private lateinit var adapter: CountriesListAdapter
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        supportActionBar?.setDisplayShowTitleEnabled(false)
+
         val countries: ArrayList<CountriesData> =
             arrayListOf(
                 CountriesData("USA", "North America", "+1", R.drawable.usa_flag),
@@ -27,10 +33,30 @@ class MainActivity : AppCompatActivity() {
                 CountriesData("United Kingdom", "Europe", "+44", R.drawable.uk_flag),
                 CountriesData("Philippines", "Asia", "+63", R.drawable.philippine_flag),
                 CountriesData("Japan", "Asia", "+81", R.drawable.japan_flag),
-                CountriesData("Spain", "Europe", "+34", R.drawable.spain_flag)
+                CountriesData("Spain", "Europe", "+34", R.drawable.spain_flag),
             )
+
+        adapter = CountriesListAdapter(this, countries)
+        binding.RecyclerView.adapter = adapter
         binding.RecyclerView.layoutManager =
             LinearLayoutManager(this, RecyclerView.VERTICAL, false)
-        binding.RecyclerView.adapter = CountriesListAdapter(this, countries)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.search_menu, menu)
+        val item = menu?.findItem(R.id.search_item)
+        val searchView: SearchView? = item?.actionView as SearchView?
+        searchView?.setOnQueryTextListener(object: SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(searchQuery: String?): Boolean {
+                adapter.filter.filter(searchQuery)
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                adapter.filter.filter(newText)
+                return false
+            }
+        })
+        return super.onCreateOptionsMenu(menu)
     }
 }
