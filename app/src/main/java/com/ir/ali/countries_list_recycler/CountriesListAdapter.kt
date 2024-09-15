@@ -13,10 +13,7 @@ class CountriesListAdapter(
     private val contextActivity: Activity,
     private val countries: ArrayList<CountriesData>
 ) : RecyclerView.Adapter<CountriesListAdapter.ViewHolder>(), Filterable {
-    private val countriesListFull = ArrayList<CountriesData>()
-    init {
-        countriesListFull.addAll(countries)
-    }
+    private val countriesListFull = ArrayList<CountriesData>(countries)
 
 
     inner class ViewHolder(
