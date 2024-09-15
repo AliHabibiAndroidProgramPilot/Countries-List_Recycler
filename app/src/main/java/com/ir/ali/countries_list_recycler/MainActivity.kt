@@ -42,14 +42,15 @@ class MainActivity : AppCompatActivity() {
         binding.RecyclerView.layoutManager =
             LinearLayoutManager(this, RecyclerView.VERTICAL, false)
         ItemTouchHelper(object : ItemTouchHelper.SimpleCallback(
-            0, ItemTouchHelper.LEFT
+            ItemTouchHelper.UP or ItemTouchHelper.DOWN, ItemTouchHelper.LEFT
         ) {
             override fun onMove(
                 recyclerView: RecyclerView,
                 viewHolder: RecyclerView.ViewHolder,
                 target: RecyclerView.ViewHolder
             ): Boolean {
-                return false
+                adapter.reOrderItems(viewHolder.adapterPosition, target.adapterPosition)
+                return true
             }
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                 adapter.swipeRemove(viewHolder.layoutPosition)

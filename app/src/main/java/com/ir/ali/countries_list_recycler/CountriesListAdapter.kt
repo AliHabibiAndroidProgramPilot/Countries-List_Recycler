@@ -90,4 +90,12 @@ class CountriesListAdapter(
         countriesListFull.removeAt(position)
         notifyItemRemoved(position)
     }
+    fun reOrderItems(fromPosition: Int, toPosition: Int) {
+        val movedItem = countriesListFull[fromPosition]
+        countries.removeAt(fromPosition)
+        countriesListFull.removeAt(fromPosition)
+        countries.add(toPosition, movedItem)
+        countriesListFull.add(toPosition, movedItem)
+        notifyItemMoved(fromPosition, toPosition)
+    }
 }
