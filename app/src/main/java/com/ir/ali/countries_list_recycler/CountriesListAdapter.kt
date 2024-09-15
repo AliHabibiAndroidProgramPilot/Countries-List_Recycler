@@ -45,13 +45,7 @@ class CountriesListAdapter(
         )
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val item = countries[position]
-        holder.setData(item)
-        holder.countryItemBinding.btnDelete.setOnClickListener {
-            countries.remove(item)
-            countriesListFull.remove(item)
-            notifyItemRemoved(holder.layoutPosition)
-        }
+        holder.setData(countries[position])
     }
 
     override fun getItemCount(): Int = countries.size

@@ -5,9 +5,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="5dp"
     android:layout_gravity="center_vertical"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    android:padding="5dp">
 
     <ImageView
         android:id="@+id/imgCountry"
@@ -25,51 +25,41 @@
         android:id="@+id/txtCountryContinent"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         android:ellipsize="end"
         android:maxLines="2"
-        tools:text="North America"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btn_delete"
+        app:layout_constraintEnd_toStartOf="@+id/txtCountryCode"
         app:layout_constraintStart_toEndOf="@+id/imgCountry"
-        app:layout_constraintTop_toBottomOf="@+id/txtCountryName" />
-
-    <Button
-        android:id="@+id/btn_delete"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="12dp"
-        android:backgroundTint="@color/btn_delete_bg"
-        android:text="@string/delete"
-        android:textAllCaps="false"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="@+id/txtCountryContinent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/txtCountryName"
+        tools:text="North America" />
 
     <TextView
         android:id="@+id/txtCountryName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
         android:ellipsize="end"
         android:maxLines="2"
         android:textColor="@color/black"
         android:textSize="24sp"
-        app:layout_constraintEnd_toStartOf="@+id/btn_delete"
+        app:layout_constraintEnd_toStartOf="@+id/txtCountryCode"
         app:layout_constraintStart_toEndOf="@+id/imgCountry"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="USA" />
 
     <TextView
         android:id="@+id/txtCountryCode"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="12dp"
-        android:gravity="center"
+        android:layout_marginEnd="24dp"
+        android:gravity="start"
+        app:layout_constraintBottom_toBottomOf="@+id/txtCountryContinent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/btn_delete"
         app:layout_constraintTop_toTopOf="@+id/txtCountryName"
         tools:text="+98" />
 </androidx.constraintlayout.widget.ConstraintLayout>
