@@ -15,7 +15,6 @@ class CountriesListAdapter(
 ) : RecyclerView.Adapter<CountriesListAdapter.ViewHolder>(), Filterable {
     private val countriesListFull = ArrayList<CountriesData>(countries)
 
-
     inner class ViewHolder(
         val countryItemBinding: CountryItemBinding
     ) : RecyclerView.ViewHolder(countryItemBinding.root) {
@@ -85,4 +84,10 @@ class CountriesListAdapter(
                 notifyDataSetChanged()
             }
         }
+
+    fun swipeRemove(position: Int) {
+        countries.removeAt(position)
+        countriesListFull.removeAt(position)
+        notifyItemRemoved(position)
+    }
 }

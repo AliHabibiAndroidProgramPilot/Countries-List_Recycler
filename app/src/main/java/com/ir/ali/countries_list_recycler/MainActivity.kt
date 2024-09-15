@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import androidx.appcompat.widget.SearchView
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ir.ali.countries_list_recycler.databinding.ActivityMainBinding
@@ -40,6 +41,20 @@ class MainActivity : AppCompatActivity() {
         binding.RecyclerView.adapter = adapter
         binding.RecyclerView.layoutManager =
             LinearLayoutManager(this, RecyclerView.VERTICAL, false)
+        ItemTouchHelper(object : ItemTouchHelper.SimpleCallback(
+            0, ItemTouchHelper.LEFT
+        ) {
+            override fun onMove(
+                recyclerView: RecyclerView,
+                viewHolder: RecyclerView.ViewHolder,
+                target: RecyclerView.ViewHolder
+            ): Boolean {
+                return false
+            }
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                adapter.swipeRemove(viewHolder.layoutPosition)
+            }
+        }).attachToRecyclerView(binding.RecyclerView)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
